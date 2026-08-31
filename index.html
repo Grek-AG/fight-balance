@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fight Balance | Dark Esoteric Action RPG</title>
+  <meta name="description" content="In Search of Truth. Official game waitlist for Fight Balance - an upcoming dark fantasy mobile RPG about an ascetic warrior.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #07090c;
+      --card-bg: rgba(14, 18, 24, 0.85);
+      --accent: #5ab2ff;
+      --accent-glow: rgba(90, 178, 255, 0.35);
+      --text-main: #f0f4f8;
+      --text-muted: #94a3b8;
+      --border-color: rgba(255, 255, 255, 0.1);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-image: 
+        radial-gradient(circle at 50% 10%, rgba(90, 178, 255, 0.14) 0%, transparent 60%),
+        linear-gradient(to bottom, #07090c 0%, #0c1017 100%);
+      padding: 24px;
+    }
+    .container {
+      max-width: 580px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 48px 32px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 40px rgba(90, 178, 255, 0.08);
+      text-align: center;
+    }
+    .avatar-wrapper {
+      position: relative;
+      width: 116px;
+      height: 116px;
+      margin: 0 auto 24px auto;
+    }
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 25px var(--accent-glow);
+      object-fit: cover;
+      display: block;
+    }
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      letter-spacing: 0.18em;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.28em;
+      color: var(--accent);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    p.desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    input[type="email"] {
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input[type="email"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+    button {
+      width: 100%;
+      padding: 16px 24px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      box-shadow: 0 6px 25px rgba(37, 99, 235, 0.45);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(37, 99, 235, 0.65);
+    }
+    .social-links {
+      margin-top: 36px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      background: rgba(255, 255, 255, 0.03);
+      transition: all 0.2s;
+    }
+    .social-btn:hover {
+      color: #fff;
+      border-color: var(--accent);
+      background: rgba(90, 178, 255, 0.1);
+    }
+    .footer-note {
+      margin-top: 24px;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+    .success-message {
+      display: none;
+      padding: 16px;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 12px;
+      color: #4ade80;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="avatar-wrapper">
+      <img class="avatar" src="Fight_Balance_Avatar_1024x1024.jpg" alt="Ascetic Monk">
+    </div>
+    <h1>Fight Balance</h1>
+    <div class="subtitle">In Search of Truth</div>
+    <p class="desc">
+      A dark, esoteric mobile RPG about an ascetic warrior overcoming human limits through physical trials, ancient scrolls, and the Arena of Will.
+    </p>
+    
+    <form class="form-group" id="waitlist-form" onsubmit="handleSubscribe(event)">
+      <input type="email" id="user-email" placeholder="Enter your email for closed alpha..." required>
+      <button type="submit">Join Early Access Waitlist</button>
+    </form>
+
+    <div class="success-message" id="success-msg">
+      ✓ You are on the list. We will notify you the moment pre-registration opens.
+    </div>
+    
+    <div class="social-links">
+      <a class="social-btn" href="https://www.youtube.com/@fightbalance" target="_blank">
+        ▶ YouTube
+      </a>
+      <a class="social-btn" href="#" onclick="alert('Community Discord launching with closed alpha!'); return false;">
+        💬 Discord
+      </a>
+    </div>
+
+    <div class="footer-note">Zero spam. Only closed alpha invitations & direct dev updates.</div>
+  </div>
+
+  <script>
+    function handleSubscribe(e) {
+      e.preventDefault();
+      const email = document.getElementById('user-email').value;
+      if (email) {
+        document.getElementById('waitlist-form').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+        // Stores locally so returning users see they are registered
+        localStorage.setItem('fb_waitlist_registered', 'true');
+      }
+    }
+    if (localStorage.getItem('fb_waitlist_registered') === 'true') {
+      document.getElementById('waitlist-form').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
