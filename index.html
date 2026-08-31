@@ -11,9 +11,11 @@
   <style>
     :root {
       --bg-dark: #07090c;
-      --card-bg: rgba(14, 18, 24, 0.85);
+      --card-bg: rgba(14, 18, 24, 0.88);
       --accent: #5ab2ff;
       --accent-glow: rgba(90, 178, 255, 0.35);
+      --yt-red: #ff0033;
+      --yt-glow: rgba(255, 0, 51, 0.35);
       --text-main: #f0f4f8;
       --text-muted: #94a3b8;
       --border-color: rgba(255, 255, 255, 0.1);
@@ -86,12 +88,12 @@
       color: var(--text-muted);
       font-size: 0.95rem;
       line-height: 1.65;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
       max-width: 440px;
       margin: 0 auto;
     }
@@ -110,7 +112,7 @@
       border-color: var(--accent);
       box-shadow: 0 0 15px var(--accent-glow);
     }
-    button {
+    button.btn-submit {
       width: 100%;
       padding: 16px 24px;
       border-radius: 12px;
@@ -124,33 +126,58 @@
       box-shadow: 0 6px 25px rgba(37, 99, 235, 0.45);
       transition: transform 0.15s, box-shadow 0.15s;
     }
-    button:hover {
+    button.btn-submit:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(37, 99, 235, 0.65);
     }
-    .social-links {
-      margin-top: 36px;
+    .youtube-action-card {
+      margin-top: 24px;
+      padding: 18px 20px;
+      background: rgba(255, 0, 51, 0.06);
+      border: 1px solid rgba(255, 0, 51, 0.25);
+      border-radius: 14px;
       display: flex;
-      justify-content: center;
-      gap: 16px;
-    }
-    .social-btn {
-      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      padding: 8px 16px;
-      border-radius: 20px;
-      border: 1px solid var(--border-color);
-      background: rgba(255, 255, 255, 0.03);
+      justify-content: space-between;
+      gap: 16px;
+      text-align: left;
       transition: all 0.2s;
     }
-    .social-btn:hover {
+    .youtube-action-card:hover {
+      background: rgba(255, 0, 51, 0.1);
+      border-color: var(--yt-red);
+      box-shadow: 0 0 25px var(--yt-glow);
+    }
+    .yt-info-title {
+      font-weight: 600;
       color: #fff;
-      border-color: var(--accent);
-      background: rgba(90, 178, 255, 0.1);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .yt-info-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .yt-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--yt-red);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px var(--yt-glow);
+      transition: transform 0.15s;
+      white-space: nowrap;
+    }
+    .yt-link-btn:hover {
+      transform: scale(1.04);
     }
     .footer-note {
       margin-top: 24px;
@@ -180,21 +207,27 @@
       A dark, esoteric mobile RPG about an ascetic warrior overcoming human limits through physical trials, ancient scrolls, and the Arena of Will.
     </p>
     
+    <!-- Waitlist Registration Form -->
     <form class="form-group" id="waitlist-form" onsubmit="handleSubscribe(event)">
       <input type="email" id="user-email" placeholder="Enter your email for closed alpha..." required>
-      <button type="submit">Join Early Access Waitlist</button>
+      <button class="btn-submit" type="submit">Join Early Access Waitlist</button>
     </form>
 
     <div class="success-message" id="success-msg">
-      ✓ You are on the list. We will notify you the moment pre-registration opens.
+      ✓ You are on the list! We will notify you the moment pre-registration opens.
     </div>
-    
-    <div class="social-links">
-      <a class="social-btn" href="https://www.youtube.com/@fightbalance" target="_blank">
-        ▶ YouTube
-      </a>
-      <a class="social-btn" href="#" onclick="alert('Community Discord launching with closed alpha!'); return false;">
-        💬 Discord
+
+    <!-- Prominent YouTube Channel Integration -->
+    <div class="youtube-action-card">
+      <div>
+        <div class="yt-info-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#ff0033"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          Official YouTube
+        </div>
+        <div class="yt-info-sub">Watch the "In Search of Truth" cinematic series</div>
+      </div>
+      <a class="yt-link-btn" href="https://www.youtube.com/@fightbalance" target="_blank" rel="noopener">
+        Subscribe
       </a>
     </div>
 
@@ -208,7 +241,6 @@
       if (email) {
         document.getElementById('waitlist-form').style.display = 'none';
         document.getElementById('success-msg').style.display = 'block';
-        // Stores locally so returning users see they are registered
         localStorage.setItem('fb_waitlist_registered', 'true');
       }
     }
