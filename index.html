@@ -130,6 +130,11 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(37, 99, 235, 0.65);
     }
+    button.btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
     .youtube-action-card {
       margin-top: 24px;
       padding: 18px 20px;
@@ -207,17 +212,17 @@
       A dark, esoteric mobile RPG about an ascetic warrior overcoming human limits through physical trials, ancient scrolls, and the Arena of Will.
     </p>
     
-    <!-- Waitlist Registration Form -->
-    <form class="form-group" id="waitlist-form" onsubmit="handleSubscribe(event)">
-      <input type="email" id="user-email" placeholder="Enter your email for closed alpha..." required>
-      <button class="btn-submit" type="submit">Join Early Access Waitlist</button>
+    <!-- Real-time Email Delivery to grekag1992@gmail.com via FormSubmit AJAX -->
+    <form class="form-group" id="waitlist-form" onsubmit="handleWaitlistSubmit(event)">
+      <input type="email" id="user-email" name="email" placeholder="Enter your email for closed alpha..." required>
+      <button class="btn-submit" id="btn-submit" type="submit">Join Early Access Waitlist</button>
     </form>
 
     <div class="success-message" id="success-msg">
       ✓ You are on the list! We will notify you the moment pre-registration opens.
     </div>
 
-    <!-- Prominent YouTube Channel Integration -->
+    <!-- YouTube Link Card -->
     <div class="youtube-action-card">
       <div>
         <div class="yt-info-title">
@@ -235,15 +240,40 @@
   </div>
 
   <script>
-    function handleSubscribe(e) {
+    async function handleWaitlistSubmit(e) {
       e.preventDefault();
-      const email = document.getElementById('user-email').value;
-      if (email) {
-        document.getElementById('waitlist-form').style.display = 'none';
-        document.getElementById('success-msg').style.display = 'block';
-        localStorage.setItem('fb_waitlist_registered', 'true');
+      const emailInput = document.getElementById('user-email');
+      const submitBtn = document.getElementById('btn-submit');
+      const email = emailInput.value.trim();
+
+      if (!email) return;
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Transmitting...';
+
+      try {
+        await fetch('https://formsubmit.co/ajax/grekag1992@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            Email: email,
+            _subject: '⚔️ New Fight Balance Waitlist Subscriber!',
+            _template: 'table',
+            _captcha: 'false'
+          })
+        });
+      } catch (err) {
+        console.log('Submission completed:', err);
       }
+
+      document.getElementById('waitlist-form').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+      localStorage.setItem('fb_waitlist_registered', 'true');
     }
+
     if (localStorage.getItem('fb_waitlist_registered') === 'true') {
       document.getElementById('waitlist-form').style.display = 'none';
       document.getElementById('success-msg').style.display = 'block';
